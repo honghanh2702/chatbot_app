@@ -8,8 +8,14 @@ import {
 } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import LoginPages from "../Loginpages";
 
 const Homepages = () => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,6 +26,7 @@ const Homepages = () => {
         end={{ x: 1, y: 1 }}
       >
         <View style={styles.content}>
+        <LoginPages isVisible={modalVisible} onClose={toggleModal} />
           <View
             style={{ width: 35, height: 35, borderRadius: 20, marginLeft: 50 }}
           >
@@ -95,7 +102,7 @@ const Homepages = () => {
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 20 }}>
-            <TouchableOpacity onPress={() => console.log("Button Pressed")}>
+            <TouchableOpacity onPress={toggleModal}>
               <LinearGradient
                 colors={["#7b42f6", "#b34df0"]}
                 style={styles.buttonStart}
